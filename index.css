@@ -1,0 +1,98 @@
+html {
+    background: url("2.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    text-align: center;
+}
+
+button {
+    font: 20px Georgia;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#faves, #addToFaves {
+    margin-left: 85%;
+    display: block;
+}
+
+#addToFaves, #backToSearch {
+    display: inline-block;
+}
+
+#list {
+    border: solid 1px black;
+    width: 50%;
+    max-height: 30%;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#search {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div.error {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    max-width: 400px;
+    max-height: 150px;
+    color:#000;
+    padding: 20px 10px;
+    background: #e5e9e8;
+    border-radius: 25px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.error>button {
+
+}
+
+#list>div {
+    padding: 5px;
+}
+
+#list>div:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    border: 1px solid red;
+}
+
+a#delHistory {
+    margin-left: -80%;
+}
+
+a:hover {
+    border: 2px solid green;
+}
+
+li {
+    list-style-type: none;
+    border: 1px solid black;
+    margin: 5px;
+    width: 70%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+li>div {
+    margin: 8px;
+}
+
+h1, h4 {
+    text-align: center;
+}

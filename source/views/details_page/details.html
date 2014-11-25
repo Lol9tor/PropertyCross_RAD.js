@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+<button id="backToSearch">Back</button>
+<button id="addToFaves">
+    <% if(isFaves) { %>
+    \/
+    <% }else { %>
+    +
+    <% } %>
+</button>
+<h2>$<%= price %></h2>
+<h2><%= place %></h2>
+<img src="<%= bigImg %>" alt="picture"/>
+<p><%= bedroomNumber %> bedroom, <%= bathroomNumber %> bathroom</p>
+<p><%= keywords %></p>
+<p><%= description %></p>

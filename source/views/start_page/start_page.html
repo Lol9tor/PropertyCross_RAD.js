@@ -1,0 +1,23 @@
+<h1>Property Cross</h1>
+<button id="faves">Faves</button>
+<p id="descr">
+    Lorem ipsum dolor sit amet, consectetur
+    adipisicing elit. A aliquam consectetur consequuntur
+    cupiditate eaque fugiat illum libero, natus neque nulla odio
+    omnis quae quasi quo ratione similique tenetur vitae voluptate.
+    Lorem ipsum dolor sit amet, consectetur
+    adipisicing elit. A aliquam consectetur consequuntur
+    cupiditate eaque fugiat illum libero, natus neque nulla odio
+    omnis quae quasi quo ratione similique tenetur vitae voluptate.
+</p>
+<p>
+    <input id="cityInput" type="text"/>
+</p>
+<button id="go">GO</button>
+<div id="list" data-template>
+    <a href="#" id="delHistory">clear history</a>
+    <h4>Last search:</h4>
+    {{# _.each(model, function(item) { }}
+    <div><span>{{ item.city }}</span> ( {{ item.totalResults }} ) - {{ (new Date(item.date)).toLocaleDateString() }}</div>
+    {{# }) }}
+</div>
