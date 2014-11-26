@@ -9,74 +9,85 @@ RAD.view("view.start_page", RAD.Blanks.ScrollableView.extend({
     onInitialize: function () {
         "use strict";
         var lastSearch = RAD.model('lastSearchCollection');
-        console.log(lastSearch);
         if (localStorage.lastSearchList){
             lastSearch = JSON.parse(localStorage.lastSearchList);
         }
         this.model = RAD.model('lastSearchCollection');
     },
     onEndDetach: function () {
-        this.$('#cityInput').val('');
+        this.renderRequest = true;
     },
     openFaves: function () {
         "use strict";
+        var options = {
+            container_id: '#screen',
+            content: "view.listView",
+            animation: 'slide',
+            extras: {
+                model : RAD.model('favesCollection')
+            }
+        };
+
+        this.publish('navigation.show', options);
     },
     openSearch: function () {
         "use strict";
         var city = this.getValue();
         if (!this.validateInput(city)){
-            var config = {
-                content: 'view.error',
-                gravity: 'center',
-                animation: 'fade',
-                extras: {
-                    title: 'Error input!',
-                    content: 'You input incorrect value! Check it and try again.'
-                }
-            };
-            this.publish('navigation.dialog.show', config);
+            this.showError('You input incorrect value!');
             return false;
         }
         this.fetchCollection(city);
-
     },
     fetchCollection: function (city) {
+        "use strict";
         var searchCollection = RAD.model('searchCollection'),
             lastSearchCollection = RAD.model('lastSearchCollection'),
             self = this;
+        searchCollection.buildUrl(city, 1);
         searchCollection.fetch({
-            url: 'http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page='+1+'&place_name='+city,
             type: 'POST',
             dataType: 'jsonp',
-            remove: false,
+            reset: true,
             success: function (collection, response, options) {
-                if (response.response.application_response_code <= 110) {
-                    var config = {
-                        container_id: '#screen',
-                        content: "view.search_page",
-                        animation: 'slide',
-                        callback: function () {
-                            lastSearchCollection.setData(city, response.response.total_results);
-                        }
-                    };
-                    self.publish('navigation.show', config);
+                var res = response.response;
+                if (res.application_response_code <= 110) {
+                    self.showSearchListPage();
+                    lastSearchCollection.setData(city, res.total_results);
                 } else {
-                    config = {
-                        content: 'view.error',
-                        gravity: 'center',
-                        animation: 'fade',
-                        extras: {
-                            title: 'Error input!',
-                            content: 'Entered city not exist in database! Check it and try again.'
-                        }
-                    };
-                    self.publish('navigation.dialog.show', config);
+                    self.showError('Entered city not exist in database!');
                 }
             },
             error: function () {
                 console.log('error!');
             }
         });
+    },
+    showSearchListPage : function () {
+        "use strict";
+        var config = {
+            container_id: '#screen',
+            content: "view.listView",
+            animation: 'slide',
+            extras: {
+                model : RAD.model('searchCollection')
+            }
+        };
+        this.publish('navigation.show', config);
+        console.log(config.extras);
+    },
+    showError : function (errorTextMsg) {
+        "use strict";
+        var config = {
+            content: 'view.error',
+            gravity: 'center',
+            animation: 'fade',
+            extras: {
+                title: 'Error input!',
+                content: errorTextMsg+' Check it and try again.'
+            }
+        };
+        this.publish('navigation.dialog.show', config);
     },
     delHistory: function () {
         "use strict";

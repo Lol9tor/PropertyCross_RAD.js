@@ -20,7 +20,8 @@ RAD.model('lastSearchCollection', Backbone.Collection.extend({
                 totalResults: totalResults,
                 city: city,
                 date: Date.now()
-            })
+            }, {silent : true});
+            this.saveLocal();
         }
     }
 }), true);

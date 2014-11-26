@@ -12,7 +12,7 @@
         "source/collections/faves.js",
 
         "source/views/start_page/start_page.js",
-        "source/views/search_page/search_page.js",
+        "source/views/listView/listView.js",
         "source/views/details_page/details_page.js",
         "source/views/error/error.js"
     ];

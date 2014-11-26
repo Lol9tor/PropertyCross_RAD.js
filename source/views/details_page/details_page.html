@@ -1,0 +1,15 @@
+<h1>{{ model.title }}</h1>
+<button id="backToSearch">Back</button>
+<button id="addToFaves">
+    {{# if(model.isFaves) { }}
+    \/
+    {{# }else { }}
+    +
+    {{# } }}
+</button>
+<h2>${{ model.price }}</h2>
+<h2>{{ model.place }}</h2>
+<img src="{{ model.bigImg }}" alt="picture"/>
+<p>{{ model.bedroomNumber }} bedroom, {{ model.bathroomNumber }} bathroom</p>
+<p>{{ model.keywords }}</p>
+<p> {{ model.description }} </p>

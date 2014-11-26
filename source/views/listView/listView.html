@@ -1,14 +1,19 @@
-<div class="scroll-view-body native-scroll">
-<h1>Found {{ model[0].totalResults }} results</h1>
-<button id="backToMain">Back</button>
-    <ul id="search">
+<div class="topHalf">
+    <h1>Found {{ this.totalResults }} results</h1>
+    <button id="backToMain">Back</button>
+</div>
+<div class="native-scroll bottomHalf">
+    <ul id="search" data-template>
         {{# _.each(model, function(item) { }}
         <li id="{{ item.guid }}">
             <img src="{{ item.smallImg }}" alt="picture" align="left"/>
             <div id="price"><strong>Price - </strong>${{ item.price }}</div>
             <div id="place"><strong>Location - </strong>{{ item.place }}</div>
         </li>
-       {{# }) }}
+        {{# }) }}
     </ul>
-<a id="more" href="#">More</a>
+    {{# if (!this.hideMoreButton) { }}
+    <a id="more" href="#">More</a>
+    {{# } }}
 </div>
+

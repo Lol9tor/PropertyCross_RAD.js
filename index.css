@@ -28,12 +28,13 @@ button {
 #list {
     border: solid 1px black;
     width: 50%;
-    max-height: 30%;
+    height: 30%;
     margin: 0 auto;
     padding: 5px;
+    /*overflow: hidden;*/
 }
 
-#search {
+#search, #list {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -54,8 +55,12 @@ div.error {
     box-sizing: border-box;
 }
 
-.error>button {
+.topHalf {
+    height: 20%;
+}
 
+.bottomHalf {
+    height: 75%;
 }
 
 #list>div {
